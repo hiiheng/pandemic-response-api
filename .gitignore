@@ -1,0 +1,9 @@
+node_modules
+build
+
+*.env
+logs
+certs
+node_modules
+
+prisma-client

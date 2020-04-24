@@ -1,0 +1,16 @@
+### Manually expand or use GraphQL Nexus to auto create this file
+
+type User {
+  id: ID! @id
+  name: String!
+}
+
+type Ask {
+  id: ID! @id
+  description: String
+}
+
+type Give {
+  id: ID! @id
+  description: String 
+}
