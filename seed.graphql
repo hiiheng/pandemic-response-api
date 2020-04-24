@@ -1,0 +1,19 @@
+mutation {
+  heng: createUserProfile(data: {
+    name:"Heng"
+  }) {
+    id
+  }
+
+  paine: createUserProfile(data: {
+    name:"Paine"
+  }) {
+    id
+  }
+
+  ashley: createUserProfile(data: {
+    name:"Ashley"
+  }) {
+    id
+  }
+}

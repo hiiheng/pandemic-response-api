@@ -1,16 +1,64 @@
 ### Manually expand or use GraphQL Nexus to auto create this file
 
-type User {
+scalar DateTime
+
+type Item {
   id: ID! @id
-  name: String!
+  name: String
+  itemType: ItemTypeEnum
+  description: String
+  comments: String
+  userId: ID!
 }
 
 type Ask {
   id: ID! @id
-  description: String
+  itemType: ItemTypeEnum
+  quantity: Int
+  comments: String
+  userID: ID!
 }
 
 type Give {
   id: ID! @id
-  description: String 
+  itemType: ItemTypeEnum
+  quantity: Int
+  comments: String
+  transportMethod: TransportMethodEnum
+  pickupLocation: LocationType  @relation(link: INLINE)
+  image: String
+  userId: ID! @id
+}
+
+type UserProfile {
+  id: ID! @id
+  name: String
+  notifications: [Notification] @relation(link: INLINE)
+}
+
+type LocationType {
+  id: ID! @id
+  address: String
+  latitude: String
+  longitude: String
+}
+
+type Notification {
+  message: String
+  title: String
+  createdAt: DateTime! @createdAt
+  id: ID! @id
+  userId: ID!
+  readStatus: Boolean
+}
+
+enum TransportMethodEnum {
+  Pickup
+  Delivery
+}
+
+enum ItemTypeEnum {
+  Medical
+  Household
+  Meals
 }
