@@ -1,16 +1,20 @@
 version: '3.1'
 
 services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    env_file: ./env/.mongo.env
 
   prisma:
     image: prismagraphql/prisma:1.34
     restart: always
-    depends_on:
+    depends_on: 
       - mongo
     ports:
       - 4466:4466
-    networks:
-      - pandemic
     # todo: put PRISMA_CONFIG in .prisma.env
     # env_file: ./env/.prisma.env
     environment:
@@ -20,5 +24,3 @@ services:
           default:
             connector: mongo
             uri: mongodb://root:example@mongo:27017
-
-
