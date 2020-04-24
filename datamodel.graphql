@@ -3,62 +3,98 @@
 scalar DateTime
 
 type Item {
+  itemCategory: ItemCategoryEnum
+  comments: String
+  description: String
   id: ID! @id
   name: String
-  itemType: ItemTypeEnum
-  description: String
-  comments: String
-  userId: ID!
+  itemType: ItemType! @relation(link: INLINE)
+  userProfile: UserProfile! @relation(link: INLINE)   # the user who gave the item
+}
+
+type ItemType {
+  id: ID! @id
+  name: String
+  variants: [Item]
 }
 
 type Ask {
-  id: ID! @id
-  itemType: ItemTypeEnum
-  quantity: Int
+  itemCategory: ItemCategoryEnum
   comments: String
-  userID: ID!
+  id: ID! @id
+  quantity: Int
+  status: AskStatusEnum @default(value: Pending)
+  transportMethod: TransportMethodEnum
+  userProfile: UserProfile @relation(link: INLINE)
 }
 
 type Give {
-  id: ID! @id
-  itemType: ItemTypeEnum
-  quantity: Int
+  itemCategory: ItemCategoryEnum
   comments: String
-  transportMethod: TransportMethodEnum
-  pickupLocation: LocationType  @relation(link: INLINE)
+  id: ID! @id
   image: String
-  userId: ID! @id
+  pickupLocation: LocationType  @relation(link: INLINE)
+  quantity: Int
+  status: GiveStatusEnum @default(value: Pending) 
+  transportMethod: TransportMethodEnum
+  userProfile: UserProfile @relation(link: INLINE)
 }
 
 type UserProfile {
   id: ID! @id
   name: String
-  notifications: [Notification] @relation(link: INLINE)
+  notifications: [Notification]
 }
 
 type LocationType {
-  id: ID! @id
   address: String
+  id: ID! @id
   latitude: String
   longitude: String
 }
 
 type Notification {
-  message: String
-  title: String
   createdAt: DateTime! @createdAt
   id: ID! @id
-  userId: ID!
+  message: String
   readStatus: Boolean
+  title: String
+  userProfile: UserProfile! @relation(link: INLINE)
 }
 
 enum TransportMethodEnum {
-  Pickup
   Delivery
+  Pickup
 }
 
-enum ItemTypeEnum {
-  Medical
+enum ItemCategoryEnum {
   Household
   Meals
+  Medical
+}
+
+enum GiveStatusEnum {
+  Pending
+  Reviewing
+  Verified
+  Returned
+  Completed
+  Cancelled
+}
+
+enum AskStatusEnum {
+  Pending
+  Reviewing
+  Verified
+  Returned
+  Completed
+  Cancelled
+}
+
+enum AskPriorityEnum {
+  A # 100 (highest)
+  B # 90
+  C # 80
+  D # 70
+  F # <= 60 (lowest)
 }

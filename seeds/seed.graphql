@@ -3,17 +3,20 @@ mutation {
     name:"Heng"
   }) {
     id
+    name
   }
 
   paine: createUserProfile(data: {
     name:"Paine"
   }) {
     id
+    name
   }
 
   ashley: createUserProfile(data: {
     name:"Ashley"
   }) {
     id
+    name
   }
 }

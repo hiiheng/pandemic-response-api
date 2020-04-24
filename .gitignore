@@ -6,4 +6,7 @@ logs
 certs
 node_modules
 
-prisma-client
+generated
+prisma-client/*.ts
+prisma-client/index.js
+prisma-client/prisma-schema.js

@@ -6,5 +6,9 @@ generate:
   - generator: javascript-client
     output: ./prisma-client/
 
-seed:
-  import: seed.graphql
+# todo: investigate how to seed with dependencies
+# seed:
+  # 1st seed
+  # import: seeds/seed.graphql
+  # 2nd seed (depends on 1st)
+  # import: seeds/dependentSeed.graphql

@@ -9,7 +9,7 @@ module.exports = {
     "ecmaVersion": 2017
   },
   rules: {
-    semi: 'always',
+    semi: 0,
     // https://gist.github.com/nkbt/9efd4facb391edbf8048
     //
     // Best Practices
@@ -29,7 +29,7 @@ module.exports = {
     "no-caller": 2, // disallow use of arguments.caller or arguments.callee
     "no-div-regex": 2, // disallow division operators explicitly at beginning of regular expression (off by default)
     "no-else-return": 2, // disallow else after a return in an if (off by default)
-    "no-empty-label": 2, // disallow use of labels for anything other then loops and switches
+    "no-empty-label": 0, // disallow use of labels for anything other then loops and switches
     "no-eq-null": 2, // disallow comparisons to null without a type-checking operator (off by default)
     "no-eval": 2, // disallow use of eval()
     "no-extend-native": 2, // disallow adding to native types
@@ -63,7 +63,7 @@ module.exports = {
     "no-warning-comments": [0, {"terms": ["todo", "fixme"], "location": "start"}], // disallow usage of configurable warning terms in comments": 2, // e.g. TODO or FIXME (off by default)
     "no-with": 2, // disallow use of the with statement
     "radix": 2, // require use of the second argument for parseInt() (off by default)
-    "vars-on-top": 2, // requires to declare all vars on top of their containing scope (off by default)
+    "vars-on-top": 0, // requires to declare all vars on top of their containing scope (off by default)
     "wrap-iife": 2, // require immediate function invocation to be wrapped in parentheses (off by default)
     "yoda": 2, // require or disallow Yoda conditions
   }

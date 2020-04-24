@@ -1,0 +1,29 @@
+mutation {
+    ashley: createGive(data: {
+        itemCategory: Household,
+        comments:"Toilet Paper"
+        quantity: 20,
+        transportMethod: Delivery,
+        userProfile: { connect : { id : "5ea3291473c7b2000787fd20" } }
+    }) {
+        id
+    } 
+
+    heng: createAsk(data: {
+        itemCategory: Medical,
+        comments: "PPE",
+        quantity: 5,
+        userProfile: { connect : { id : "5ea3291473c7b2000787fd1e" } }
+    }) {
+        id
+    }
+
+    paine: createAsk(data: {
+        itemCategory: Household,
+        comments: "Toilet Paper",
+        quantity: 10,
+        userProfile: { connect : { id : "5ea3291473c7b2000787fd1f" } }
+    }) {
+        id
+    }
+}
