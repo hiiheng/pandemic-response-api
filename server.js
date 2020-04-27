@@ -6,15 +6,17 @@ const { makeSchema, schema } = require('nexus')
 const { PrismaClient } = require('@prisma/client')
 const { nexusPrismaPlugin } = require('nexus-prisma')
 const { objectType, enumType, intArg, stringArg, scalarType } = schema
+const { GraphQLDate } = require('graphql-iso-date')
 
 const Ask = objectType({
   name: 'Ask',
   definition(t) {
+    t.string('comments', { nullable: true })
+    t.field('createdAt', { type: DateTime })
     t.field('itemCategory', {
       type: ItemCategoryEnum,
       nullable: true,
     })
-    t.string('comments', { nullable: true })
     t.id('id')
     t.int('quantity', { nullable: true })
     t.field('status', {
@@ -34,11 +36,12 @@ const Ask = objectType({
 const Give = objectType({
   name: 'Give',
   definition(t) {
+    t.string('comments', { nullable: true })
+    t.field('createdAt', { type: DateTime })
     t.field('itemCategory', {
       type: ItemCategoryEnum,
       nullable: true,
     })
-    t.string('comments', { nullable: true })
     t.id('id')
     t.string('image', { nullable: true })
     t.field('pickupLocation', {
@@ -63,11 +66,12 @@ const Give = objectType({
 const Item = objectType({
   name: 'Item',
   definition(t) {
+    t.string('comments', { nullable: true })
+    t.field('createdAt', { type: DateTime })
     t.field('itemCategory', {
       type: ItemCategoryEnum,
       nullable: true,
     })
-    t.string('comments', { nullable: true })
     t.string('description', { nullable: true })
     t.id('id')
     t.string('name', { nullable: true })
@@ -121,7 +125,7 @@ const UserProfile = objectType({
 })
 
 const AskPriorityEnum = enumType({
-  name: "AskPriorityEnum",
+  name: 'AskPriorityEnum',
   members: ['A','B','C','D','F'],
 })
 const AskStatusEnum = enumType({
@@ -141,12 +145,7 @@ const TransportMethodEnum = enumType({
   members: ['Delivery','Pickup'],
 })
 
-const DateTime = scalarType({
-  name: 'DateTime',
-  serialize() { /* Todo */ },
-  parseValue() { /* Todo */ },
-  parseLiteral() { /* Todo */ }
-})
+const DateTime = GraphQLDate
 
 const prisma = new PrismaClient()
 

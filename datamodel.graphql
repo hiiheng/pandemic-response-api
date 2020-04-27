@@ -3,8 +3,9 @@
 scalar DateTime
 
 type Item {
-  itemCategory: ItemCategoryEnum
   comments: String
+  createdAt: DateTime! @createdAt
+  itemCategory: ItemCategoryEnum
   description: String
   id: ID! @id
   name: String
@@ -19,8 +20,9 @@ type ItemType {
 }
 
 type Ask {
-  itemCategory: ItemCategoryEnum
   comments: String
+  createdAt: DateTime! @createdAt
+  itemCategory: ItemCategoryEnum
   id: ID! @id
   quantity: Int
   status: AskStatusEnum @default(value: Pending)
@@ -29,13 +31,14 @@ type Ask {
 }
 
 type Give {
-  itemCategory: ItemCategoryEnum
   comments: String
+  createdAt: DateTime! @createdAt
+  itemCategory: ItemCategoryEnum
   id: ID! @id
   image: String
   pickupLocation: LocationType  @relation(link: INLINE)
   quantity: Int
-  status: GiveStatusEnum @default(value: Pending) 
+  status: GiveStatusEnum @default(value: Pending)
   transportMethod: TransportMethodEnum
   userProfile: UserProfile @relation(link: INLINE)
 }
