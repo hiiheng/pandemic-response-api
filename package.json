@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "yarn prisma:start",
+    "start": "yarn prisma:start && node server.js",
     "dev": "nodemon",
     "lint": "node_modules/eslint/bin/eslint.js .",
     "prisma:init": "rm -fr prisma.yml datamodel.prisma && ./node_modules/prisma/dist/index.js init --endpoint \"http://${PRISMA_HOST}:${PRISMA_PORT}\"",
     "prisma:generate": "./node_modules/prisma/dist/index.js generate",
     "prisma:start": "./node_modules/prisma/dist/index.js deploy",
-    "prisma:stop": "./node_modules/prisma/dist/index.js delete default"
+    "prisma:stop": "./node_modules/prisma/dist/index.js delete default",
+    "prisma:ls": "./node_modules/prisma/dist/index.js list"
   },
   "repository": "https://github.com/hiiheng/pandemic-response-api.git",
   "private": true,
@@ -17,12 +18,14 @@
     "@nexus/schema": "^0.13.1",
     "@prisma/client": "^2.0.0-beta.3",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "graphql": "^15.0.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-yoga": "^1.18.3",
+    "mongoose": "^5.9.10",
     "nexus": "^0.20.0",
     "nexus-prisma": "^0.12.0",
-    "prisma": "1.34"
+    "prisma": "~1.34"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
