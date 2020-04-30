@@ -10,8 +10,9 @@ require('dotenv').config({ path: '.node.env' })
 // eslint-disable-next-line no-process-env
 const { MONGO_USER, MONGO_PWD, MONGO_HOST, MONGO_PORT, MONGO_DB, PORT } = process.env
 
-const mongoURI = `mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOST} || 'localhost'}:${MONGO_PORT || 27017}/${MONGO_DB}?authSource=admin`, options = {
-  useNewUrlParser: true
+const mongoURI = `mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOST || 'localhost'}:${MONGO_PORT || 27017}/${MONGO_DB}?authSource=admin`, options = {
+  useNewUrlParser: true,
+  dbName: MONGO_DB 
 }
 
 mongoose.connect(mongoURI, options).catch(() => console.error(`Failed to connect to MongoDB`))
@@ -30,8 +31,8 @@ const port = normalizePort(PORT || 3000)
 app.set('port', port)
 
 app.use((req,res,next) => {
-  res.setHeader('Access-Control-Allow-Origin', ['http://localhost:3000']);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
   next()
